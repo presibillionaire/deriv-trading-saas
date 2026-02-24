@@ -30,12 +30,12 @@
     "pg": "^8.18.0",
     "sequelize": "^6.37.7",
     "winston": "^3.8.0",
-    "ws": "^8.13.0"
+    "ws": "^8.19.0"
   },
   "devDependencies": {
-    "jest": "^29.5.0",
-    "nodemon": "^2.0.20",
-    "sequelize-cli": "^6.6.5"
+    "jest": "^25.0.0",
+    "nodemon": "^3.1.14",
+    "sequelize-cli": "^6.4.1"
   },
   "engines": {
     "node": ">=14.0.0",

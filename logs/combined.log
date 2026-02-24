@@ -1,0 +1,95 @@
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 00:45:39"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 00:45:39"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 08:27:51"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 08:27:51"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 08:27:51"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 08:39:39"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 08:39:39"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 08:48:25"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 08:48:25"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 09:52:57"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 09:52:57"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 09:52:57"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 09:55:24"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 09:55:24"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 09:56:47"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 09:56:47"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 09:56:47"}
+{"level":"error","message":"Full error: {\"name\":\"SequelizeConnectionRefusedError\",\"parent\":{\"code\":\"ECONNREFUSED\"},\"original\":{\"code\":\"ECONNREFUSED\"}}","timestamp":"2026-02-23 09:56:47"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 09:56:47"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 09:58:30"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 09:58:30"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 09:58:33"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 09:58:39"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 09:58:39"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 10:01:24"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 10:01:24"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 10:01:26"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 10:09:15"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 10:09:15"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 10:09:18"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 10:09:30"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 10:09:30"}
+{"level":"info","message":"New user registered: testuser@example.com","timestamp":"2026-02-23 10:11:59"}
+{"level":"info","message":"User logged in: testuser@example.com","timestamp":"2026-02-23 10:12:15"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 12:02:37"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 12:02:37"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 12:02:40"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 12:02:53"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 12:02:53"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 13:16:16"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 13:16:16"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 13:16:19"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 13:16:32"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 13:16:32"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 13:29:27"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 13:29:27"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 13:29:30"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 13:29:43"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 13:29:43"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 13:48:54"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 13:48:54"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 13:48:57"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 13:49:10"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 13:49:10"}
+{"level":"info","message":"SIGTERM signal received: closing HTTP server","timestamp":"2026-02-23 15:12:27"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 15:19:02"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 15:19:02"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 15:19:10"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 15:19:28"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 15:19:28"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 15:30:08"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 15:30:08"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 15:30:22"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 15:30:48"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 15:30:48"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 16:03:47"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 16:03:54"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 16:04:35"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 16:06:03"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 16:06:04"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 18:24:05"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 18:24:05"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 18:24:16"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 18:24:31"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 18:24:32"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 18:28:35"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 18:28:35"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 18:28:45"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 18:29:04"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 18:29:04"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 18:34:58"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 18:34:59"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 18:35:08"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 18:35:23"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 18:35:23"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 18:48:42"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 18:48:42"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 18:48:52"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 18:49:07"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 18:49:07"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-23 19:04:53"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-23 19:04:54"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 19:05:00"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 19:05:21"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 19:05:21"}

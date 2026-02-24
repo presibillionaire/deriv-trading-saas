@@ -1,0 +1,19 @@
+cat > .env << 'EOF'
+# Application
+NODE_ENV=development
+PORT=5000
+
+# Database
+MONGODB_URI=mongodb://localhost:27017/deriv-trading
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+JWT_EXPIRE=7d
+
+# Deriv API
+DERIV_API_URL=wss://ws.binaryws.com/websockets/v3
+DERIV_APP_ID=your-deriv-app-id
+
+# Logging
+LOG_LEVEL=info
+EOF

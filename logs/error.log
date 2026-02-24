@@ -1,0 +1,7 @@
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 08:27:51"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 08:39:39"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 08:48:25"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 09:52:57"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 09:55:24"}
+{"level":"error","message":"❌ Database connection failed: ","timestamp":"2026-02-23 09:56:47"}
+{"level":"error","message":"Full error: {\"name\":\"SequelizeConnectionRefusedError\",\"parent\":{\"code\":\"ECONNREFUSED\"},\"original\":{\"code\":\"ECONNREFUSED\"}}","timestamp":"2026-02-23 09:56:47"}

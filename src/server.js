@@ -1,36 +1,29 @@
-/**
- * Main Server File - Express Application
- * Phase 3: With models, routes, and middleware
- */
-
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-// Load environment variables
 dotenv.config();
 
-// Import models and database
 const { sequelize } = require('./models');
 const logger = require('./utils/logger');
 const errorHandler = require('./middleware/errorHandler');
+const derivApiService = require('./services/derivApiService');
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const accountRoutes = require('./routes/accountRoutes');
+const tradeRoutes = require('./routes/tradeRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
 
-// Initialize Express app
 const app = express();
 
-/**
- * Security Middleware
- */
+// Security
 app.use(helmet());
 
-/**
- * CORS Configuration
- */
+// CORS
 const corsOptions = {
   origin: process.env.CORS_ORIGIN?.split(',') || 'http://localhost:3000',
   credentials: true,
@@ -40,105 +33,86 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-/**
- * Rate Limiting
- */
+// Rate Limiting
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
-  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
-  message: 'Too many requests from this IP, please try again later.',
-  standardHeaders: true,
-  legacyHeaders: false
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100
 });
 app.use('/api/', limiter);
 
-/**
- * Body Parser Middleware
- */
+// Body Parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/**
- * Health Check Endpoint
- */
+// Health Check
 app.get('/health', (req, res) => {
-  res.json({
-    status: 'OK',
-    timestamp: new Date(),
-    uptime: process.uptime()
-  });
+  res.json({ status: 'OK', timestamp: new Date() });
 });
 
-/**
- * API Routes
- */
-app.use('/api/auth', authRoutes);
-
-/**
- * Welcome Endpoint
- */
+// Welcome
 app.get('/', (req, res) => {
   res.json({
     message: 'Deriv Trading SaaS API',
     version: '1.0.0',
-    status: 'running'
+    status: 'running',
+    endpoints: {
+      auth: '/api/auth',
+      users: '/api/users',
+      accounts: '/api/accounts',
+      trades: '/api/trades',
+      analytics: '/api/analytics'
+    }
   });
 });
 
-/**
- * 404 Handler
- */
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/accounts', accountRoutes);
+app.use('/api/trades', tradeRoutes);
+app.use('/api/analytics', analyticsRoutes);
+
+// 404 Handler
 app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Route not found',
-    path: req.originalUrl
-  });
+  res.status(404).json({ success: false, error: 'Route not found' });
 });
 
-/**
- * Error Handling Middleware
- */
+// Error Handler
 app.use(errorHandler.handle);
 
-/**
- * Database Connection & Server Start
- */
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
-    // Authenticate database
     await sequelize.authenticate();
-    logger.info('✅ Database connection successful');
+    logger.info('✅ Database connected');
 
-    // Sync models
-    await sequelize.sync({
-      alter: process.env.NODE_ENV === 'development',
-      logging: process.env.NODE_ENV === 'development' ? console.log : false
-    });
-    logger.info('✅ Database models synchronized');
+    await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
+    logger.info('✅ Models synchronized');
 
-    // Start server
+    // Connect to Deriv API
+    try {
+      await derivApiService.connect();
+    } catch (error) {
+      logger.warn('⚠️ Deriv API connection failed - trading features will be limited', { error: error.message });
+    }
+
     const server = app.listen(PORT, () => {
       logger.info(`✅ Server running on http://localhost:${PORT}`);
-      logger.info(`📍 Health check: http://localhost:${PORT}/health`);
-      logger.info(`📚 API docs will be at: http://localhost:${PORT}/api-docs`);
+      logger.info(`📍 Health: http://localhost:${PORT}/health`);
     });
 
-    /**
-     * Graceful Shutdown
-     */
     process.on('SIGTERM', async () => {
-      logger.info('SIGTERM signal received: closing server');
+      logger.info('SIGTERM: shutting down');
       server.close(async () => {
+        derivApiService.disconnect();
         await sequelize.close();
-        logger.info('Server and database connection closed');
+        logger.info('Shutdown complete');
         process.exit(0);
       });
     });
   } catch (error) {
-    logger.error(`Failed to start server: ${error.message}`);
+    logger.error(`❌ Server startup failed: ${error.message}`);
     process.exit(1);
   }
 };

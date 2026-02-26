@@ -93,3 +93,8 @@
 {"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-23 19:05:00"}
 {"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-23 19:05:21"}
 {"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-23 19:05:21"}
+{"level":"info","message":"✅ Server running on http://localhost:5000","timestamp":"2026-02-25 17:07:34"}
+{"level":"info","message":"📍 Health check: http://localhost:5000/health","timestamp":"2026-02-25 17:07:36"}
+{"level":"info","message":"✅ PostgreSQL Connected via Sequelize","timestamp":"2026-02-25 17:07:42"}
+{"level":"info","message":"✅ Database models synchronized","timestamp":"2026-02-25 17:08:00"}
+{"level":"info","message":"✅ All models synchronized with database","timestamp":"2026-02-25 17:08:00"}

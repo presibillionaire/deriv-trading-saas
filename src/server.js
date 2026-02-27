@@ -120,3 +120,9 @@ const startServer = async () => {
 startServer();
 
 module.exports = app;
+
+// Add this line with other route imports
+const adminRoutes = require('./routes/admin');
+
+// Add this line with other app.use statements
+app.use('/api/admin', adminRoutes);

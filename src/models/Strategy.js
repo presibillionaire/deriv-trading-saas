@@ -1,34 +1,28 @@
-const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config/database');
 
-const StrategySchema = new mongoose.Schema({
+const Strategy = sequelize.define('Strategy', {
   id: {
-    type: String,
-    default: uuidv4, // Replaces UUIDV4
-    unique: true
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
   },
   name: {
-    type: String,
-    required: true,
-    trim: true
+    type: DataTypes.STRING,
+    allowNull: false
   },
-  description: {
-    type: String,
+  type: {
+    type: DataTypes.STRING, // e.g., 'Martingale', 'RSI'
+    allowNull: false
   },
-  icon: {
-    type: String,
+  config: {
+    type: DataTypes.JSON, // Stores strategy parameters
+    allowNull: true
   },
-  filePath: {
-    type: String,
-  },
-  enabled: {
-    type: Boolean,
-    default: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  userId: {
+    type: DataTypes.UUID,
+    allowNull: false
   }
 });
 
-module.exports = mongoose.model('Strategy', StrategySchema);
+module.exports = Strategy;

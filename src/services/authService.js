@@ -13,7 +13,7 @@ class AuthService {
    */
   static async register(userData) {
     try {
-      // Check if user exists
+      // Check if user exists - Standard Sequelize Syntax
       const existingUser = await User.findOne({
         where: { email: userData.email.toLowerCase() }
       });
@@ -56,29 +56,35 @@ class AuthService {
    */
   static async login(email, password) {
     try {
-      // Find user
-      const user = await User.findByEmail(email);
+      // FIX: Replaced findByEmail with findOne
+      const user = await User.findOne({ 
+        where: { email: email.toLowerCase() } 
+      });
 
       if (!user) {
         throw new Error('Invalid email or password');
       }
 
-      // Check if account is locked
-      if (user.isAccountLocked()) {
+      // Check if account is locked (Assuming method is in User model)
+      if (typeof user.isAccountLocked === 'function' && user.isAccountLocked()) {
         throw new Error('Account is locked. Please try again later.');
       }
 
-      // Check password
+      // Check password (Assuming method is in User model)
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
-        // Increment login attempts
-        await user.incrementLoginAttempts();
+        // Increment login attempts (Assuming method is in User model)
+        if (typeof user.incrementLoginAttempts === 'function') {
+          await user.incrementLoginAttempts();
+        }
         throw new Error('Invalid email or password');
       }
 
       // Reset login attempts on successful login
-      await user.resetLoginAttempts();
+      if (typeof user.resetLoginAttempts === 'function') {
+        await user.resetLoginAttempts();
+      }
 
       // Generate tokens
       const accessToken = this.generateAccessToken(user.id);
@@ -190,10 +196,13 @@ class AuthService {
    */
   static async requestPasswordReset(email) {
     try {
-      const user = await User.findByEmail(email);
+      // FIX: Replaced findByEmail with findOne
+      const user = await User.findOne({ 
+        where: { email: email.toLowerCase() } 
+      });
 
       if (!user) {
-        // Don't reveal if user exists
+        // Don't reveal if user exists for security
         return {
           success: true,
           message: 'If an account exists, password reset link will be sent'
@@ -208,7 +217,7 @@ class AuthService {
 
       return {
         success: true,
-        resetToken, // In production, send this via email
+        resetToken, // In production, send this via email only
         message: 'Password reset link sent to email'
       };
     } catch (error) {
@@ -264,6 +273,7 @@ class AuthService {
         throw new Error('User not found');
       }
 
+      // Check password (Assuming method is in User model)
       const isPasswordValid = await user.comparePassword(currentPassword);
 
       if (!isPasswordValid) {

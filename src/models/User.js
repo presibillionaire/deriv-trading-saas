@@ -8,42 +8,49 @@ const User = sequelize.define('User', {
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
+  username: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
     lowercase: true,
-    validate: {
-      isEmail: true,
-    },
+    validate: { isEmail: true },
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      len: [6, 100],
-    },
   },
-  firstName: {
+  firstName: { type: DataTypes.STRING },
+  lastName: { type: DataTypes.STRING },
+
+  // --- ADD THE NEW STEP 1 FIELDS HERE ---
+  derivApiToken: {
     type: DataTypes.STRING,
+    allowNull: true, // This stays empty until they link their account
   },
-  lastName: {
+  derivCurrency: {
     type: DataTypes.STRING,
-  },
-  isActive: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
+    defaultValue: 'USD',
   },
   derivConnected: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  // ---------------------------------------
+
+  isActive: { type: DataTypes.BOOLEAN, defaultValue: true },
 }, {
   timestamps: true,
   hooks: {
     beforeCreate: async (user) => {
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(user.password, salt);
+      if (user.password) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
     },
   },
 });

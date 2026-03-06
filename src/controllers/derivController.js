@@ -1,98 +1,59 @@
-const APIToken = require('../models/APIToken');
 const User = require('../models/User');
+const derivService = require('../services/derivService');
 const logger = require('../utils/logger');
 
 exports.connectAccount = async (req, res, next) => {
   try {
-    const { derivToken, accountType } = req.body;
+    const { derivToken } = req.body;
+    // Note: req.user.id comes from your protect/auth middleware
+    const userId = req.user.id; 
 
-    const apiToken = new APIToken({
-      userId: req.userId,
-      derivToken,
-      accountType,
-      isActive: true,
-    });
+    logger.info(`Attempting to connect Deriv account for user: ${userId}`);
 
-    await apiToken.save();
-    await User.findByIdAndUpdate(req.userId, { derivConnected: true });
+    // 1. Actually talk to Deriv to see if this token is real
+    const derivData = await derivService.validateToken(derivToken);
 
-    logger.info(`Deriv account connected for user: ${req.userId}`);
-
-    res.status(201).json({
-      message: 'Deriv account connected successfully',
-      accountId: apiToken._id,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.getAccounts = async (req, res, next) => {
-  try {
-    const accounts = await APIToken.find({ userId: req.userId, isActive: true });
-
-    res.json({
-      accounts: accounts.map(acc => ({
-        accountId: acc._id,
-        accountType: acc.accountType,
-        balance: acc.balance,
-        lastSyncedAt: acc.lastSyncedAt,
-      })),
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.getAccountDetails = async (req, res, next) => {
-  try {
-    const { accountId } = req.params;
-
-    const account = await APIToken.findOne({
-      _id: accountId,
-      userId: req.userId,
-    });
-
-    if (!account) {
-      return res.status(404).json({ message: 'Account not found' });
+    // 2. Update the User in Postgres (Sequelize syntax)
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    res.json({ account });
+    await user.update({
+      derivApiToken: derivToken,
+      derivConnected: true,
+      derivCurrency: derivData.currency || 'USD'
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Deriv account connected successfully',
+      data: {
+        fullname: derivData.fullname,
+        balance: derivData.balance,
+        currency: derivData.currency
+      }
+    });
   } catch (error) {
-    next(error);
-  }
-};
-
-exports.disconnectAccount = async (req, res, next) => {
-  try {
-    const { accountId } = req.params;
-
-    await APIToken.findByIdAndUpdate(accountId, { isActive: false });
-
-    logger.info(`Deriv account disconnected for user: ${req.userId}`);
-
-    res.json({ message: 'Account disconnected successfully' });
-  } catch (error) {
-    next(error);
+    logger.error(`Connection error: ${error.message}`);
+    res.status(400).json({ success: false, error: error.message });
   }
 };
 
 exports.getBalance = async (req, res, next) => {
   try {
-    const { accountId } = req.params;
-
-    const account = await APIToken.findOne({
-      _id: accountId,
-      userId: req.userId,
-    });
-
-    if (!account) {
-      return res.status(404).json({ message: 'Account not found' });
+    const user = await User.findByPk(req.user.id);
+    
+    if (!user || !user.derivApiToken) {
+      return res.status(400).json({ success: false, message: 'No Deriv account linked' });
     }
 
+    const accountInfo = await derivService.getBalance(user.derivApiToken);
+    
     res.json({
-      balance: account.balance,
-      lastSyncedAt: account.lastSyncedAt,
+      success: true,
+      balance: accountInfo.balance,
+      currency: accountInfo.currency
     });
   } catch (error) {
     next(error);

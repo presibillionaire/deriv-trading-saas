@@ -1,30 +1,34 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || 'deriv_saas',
-  process.env.DB_USER || 'postgres',
-  process.env.DB_PASSWORD || 'postgres',
-  {
-    host: process.env.DB_HOST || '127.0.0.1',
-    dialect: 'postgres',
-    logging: false, // Set to console.log to see SQL queries
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
-  }
-);
+// Use DATABASE_URL if it exists (Supabase), otherwise use local params
+const sequelize = process.env.DATABASE_URL 
+  ? new Sequelize(process.env.DATABASE_URL, {
+      dialect: 'postgres',
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false // Required for Supabase/Cloud providers
+        }
+      },
+      logging: false
+    })
+  : new Sequelize(
+      process.env.DB_NAME || 'deriv_saas',
+      process.env.DB_USER || 'postgres',
+      process.env.DB_PASSWORD || 'postgres',
+      {
+        host: process.env.DB_HOST || '127.0.0.1',
+        dialect: 'postgres',
+        logging: false,
+        pool: { max: 5, min: 0, acquire: 30000, idle: 10000 }
+      }
+    );
 
 const connectDB = async () => {
   try {
     await sequelize.authenticate();
-    console.log('✅ PostgreSQL Connected (Sequelize)');
-    
-    // Sync models (creates tables if they don't exist)
-    // Use { alter: true } during development to update tables
+    console.log('✅ Database Connected Successfully');
     await sequelize.sync({ alter: true });
     console.log('✅ Database synchronized');
   } catch (error) {

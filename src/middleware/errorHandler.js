@@ -46,4 +46,4 @@ class ErrorHandler {
   }
 }
 
-module.exports = ErrorHandler;
+module.exports = ErrorHandler.handle;

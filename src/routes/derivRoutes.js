@@ -1,15 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const derivController = require('../controllers/derivController');
-const AuthMiddleware = require('../middleware/authMiddleware'); 
+const AuthMiddleware = require('../middleware/authMiddleware');
 
-// Connect Deriv account
-router.post('/connect', AuthMiddleware.authenticate, derivController.connectAccount);
+// Protect all routes
+router.use(AuthMiddleware.authenticate);
 
-// Get account balance
-router.get('/balance', AuthMiddleware.authenticate, derivController.getBalance);
+// Account Actions
+router.post('/connect', derivController.connectAccount);
+router.get('/balance', derivController.getBalance);
 
-// --- NEW: Execute a trade ---
-router.post('/trade', AuthMiddleware.authenticate, derivController.placeTrade);
+// Trading Actions
+router.post('/trade', derivController.placeTrade);
+router.post('/sync', derivController.syncPendingTrades); // New Sync Route
+
+// Data Retrieval
+router.get('/history', derivController.getTradeHistory);
+router.get('/stats', derivController.getTradeStats);
 
 module.exports = router;

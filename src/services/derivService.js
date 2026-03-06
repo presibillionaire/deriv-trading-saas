@@ -3,7 +3,7 @@ const logger = require('../utils/logger');
 
 class DerivService {
   constructor() {
-    this.baseUrl = 'wss://ws.binaryws.com/websockets/v3?app_id=1089';
+    this.baseUrl = 'wss://ws.binaryws.com/websockets/v3?app_id=127831';
   }
 
   /**

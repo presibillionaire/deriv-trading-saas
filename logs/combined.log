@@ -160,3 +160,9 @@
 {"level":"info","message":"Attempting to connect Deriv account for user: 8799db31-aa41-4a3f-b044-60f1a14b0114","service":"deriv-trading-saas","timestamp":"2026-03-06 00:17:56"}
 {"level":"info","message":"Sending request to Deriv: authorize","service":"deriv-trading-saas","timestamp":"2026-03-06 00:17:57"}
 {"level":"info","message":"Token validated for user:  Rockeme Barrington Scott","service":"deriv-trading-saas","timestamp":"2026-03-06 00:17:57"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 00:57:45"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 00:57:46"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 00:57:51"}
+{"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 00:58:12"}
+{"email":"pro@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 00:59:20"}
+{"level":"info","message":"User 8799db31-aa41-4a3f-b044-60f1a14b0114 placing CALL trade on R_100","service":"deriv-trading-saas","timestamp":"2026-03-06 00:59:52"}

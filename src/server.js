@@ -1,66 +1,61 @@
 const express = require('express');
 const dotenv = require('dotenv');
-
-// Load environment variables
-dotenv.config();
-
-const { connectDB } = require('./config/sequelize');
+const cors = require('cors');
+const helmet = require('helmet');
 const logger = require('./utils/logger');
 const errorHandler = require('./middleware/errorHandler');
+// Ensure this path matches where your connectDB function lives
+const { connectDB } = require('./config/sequelize'); 
 
-// Initialize Express app
+dotenv.config();
+
+// Initialize Express
 const app = express();
 
-// Middleware
+// Connect to PostgreSQL (Sequelize)
+connectDB(); 
+
+// --- IMPORT ROUTES ---
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const derivRoutes = require('./routes/derivRoutes'); // NEW: Added Deriv Routes
+const tradeRoutes = require('./routes/tradeRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
+
+// --- MIDDLEWARE ---
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
 
-// Connect to PostgreSQL
-connectDB().then(() => {
-  logger.info('✅ All models synchronized with database');
-}).catch(err => {
-  logger.error(`Database sync error: ${err.message}`);
-});
+// CORS Configuration
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN?.split(',') || 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  maxAge: 3600
+};
+app.use(cors(corsOptions));
 
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/deriv', require('./routes/deriv'));
-app.use('/api/trading', require('./routes/trading'));
-app.use('/api/bot', require('./routes/bot'));
-app.use('/api/tokens', require('./routes/tokens'));
-
-// Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date() });
-});
-
+// --- HEALTH CHECK ---
 app.get('/', (req, res) => {
-  res.json({ message: 'Deriv Trading SaaS Backend is running!' });
+  res.status(200).json({
+    status: 'success',
+    message: '🚀 Deriv Trading SaaS API is online',
+    timestamp: new Date().toISOString()
+  });
 });
 
-// Error handling middleware
+// --- ROUTE MIDDLEWARES ---
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/deriv', derivRoutes); // NEW: Endpoint for Deriv connections
+app.use('/api/trades', tradeRoutes);
+app.use('/api/analytics', analyticsRoutes);
+
+// --- ERROR HANDLING ---
 app.use(errorHandler);
 
-// Start server
 const PORT = process.env.PORT || 5000;
-
-try {
-  const server = app.listen(PORT, () => {
-    logger.info(`✅ Server running on http://localhost:${PORT}`);
-    logger.info(`📍 Health check: http://localhost:${PORT}/health`);
-  });
-
-  // Graceful shutdown
-  process.on('SIGTERM', () => {
-    logger.info('SIGTERM signal received: closing HTTP server');
-    server.close(() => {
-      logger.info('HTTP server closed');
-      process.exit(0);
-    });
-  });
-} catch (error) {
-  logger.error(`Failed to start server: ${error.message}`);
-  process.exit(1);
-}
-
-module.exports = app;
+app.listen(PORT, () => {
+  logger.info(`🚀 Server running on port ${PORT} {"service":"deriv-trading-saas"}`);
+});

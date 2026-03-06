@@ -115,6 +115,63 @@ class DerivService {
       }, 20000);
     });
   }
+
+  /**
+   * Fetches the final outcome of a contract
+   * FIX: Uses sequential messaging (Authorize THEN Request)
+   */
+  async getContractStatus(token, contractId) {
+    return new Promise((resolve, reject) => {
+      const ws = new WebSocket(this.baseUrl);
+
+      ws.on('open', () => {
+        ws.send(JSON.stringify({ authorize: token }));
+      });
+
+      ws.on('message', (data) => {
+        const response = JSON.parse(data);
+
+        if (response.error) {
+          ws.close();
+          return reject(new Error(response.error.message));
+        }
+
+        // Step 1: Once authorized, request the contract details
+        if (response.msg_type === 'authorize') {
+          ws.send(JSON.stringify({
+            proposal_open_contract: 1,
+            contract_id: parseInt(contractId)
+          }));
+        }
+
+        // Step 2: Receive the contract data
+        if (response.msg_type === 'proposal_open_contract') {
+          const contract = response.proposal_open_contract;
+          ws.close();
+          
+          resolve({
+            is_sold: !!contract.is_sold,
+            status: contract.status, // 'won' or 'lost'
+            profit: contract.profit,
+            exitPrice: contract.exit_tick_display_value || contract.sell_price,
+            payout: contract.payout
+          });
+        }
+      });
+
+      ws.on('error', (error) => {
+        ws.close();
+        reject(error);
+      });
+
+      setTimeout(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.close();
+          reject(new Error('Contract check timed out'));
+        }
+      }, 15000);
+    });
+  }
 }
 
 module.exports = new DerivService();

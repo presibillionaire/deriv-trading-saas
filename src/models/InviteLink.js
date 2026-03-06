@@ -1,29 +1,33 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 
-const InviteLink = sequelize.define('InviteLink', {
+const InviteLinkSchema = new mongoose.Schema({
   id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
+    type: String,
+    default: uuidv4, // Replaces UUIDV4 from sequelize
+    unique: true
   },
   code: {
-    type: DataTypes.STRING,
+    type: String,
+    required: true,
     unique: true,
-    allowNull: false,
   },
   expiresAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
+    type: Date,
+    required: true,
   },
   used: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
+    type: Boolean,
+    default: false,
   },
   createdByAdmin: {
-    type: DataTypes.UUID,
-    allowNull: false,
+    type: String, // Storing the Admin ID as a string/UUID
+    required: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  }
 });
 
-module.exports = InviteLink;
+module.exports = mongoose.model('InviteLink', InviteLinkSchema);

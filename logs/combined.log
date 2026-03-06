@@ -166,3 +166,94 @@
 {"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 00:58:12"}
 {"email":"pro@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 00:59:20"}
 {"level":"info","message":"User 8799db31-aa41-4a3f-b044-60f1a14b0114 placing CALL trade on R_100","service":"deriv-trading-saas","timestamp":"2026-03-06 00:59:52"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 01:27:47"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 01:27:49"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 01:27:54"}
+{"error":"Token verification failed: jwt expired","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 01:28:46"}
+{"email":"pro@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 01:29:32"}
+{"level":"info","message":"User 8799db31-aa41-4a3f-b044-60f1a14b0114 placing CALL trade on R_100","service":"deriv-trading-saas","timestamp":"2026-03-06 01:29:59"}
+{"level":"error","message":"Trade execution error: notNull Violation: TradeHistory.tradeType cannot be null","service":"deriv-trading-saas","timestamp":"2026-03-06 01:30:00"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 01:32:27"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 01:32:29"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 01:32:34"}
+{"level":"info","message":"User 8799db31-aa41-4a3f-b044-60f1a14b0114 placing CALL trade on R_100","service":"deriv-trading-saas","timestamp":"2026-03-06 01:32:42"}
+{"level":"error","message":"Trade execution error: invalid input value for enum \"enum_TradeHistories_status\": \"open\"","service":"deriv-trading-saas","timestamp":"2026-03-06 01:32:43"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 01:34:35"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 01:34:36"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 01:34:41"}
+{"level":"info","message":"User 8799db31-aa41-4a3f-b044-60f1a14b0114 placing CALL trade on R_100","service":"deriv-trading-saas","timestamp":"2026-03-06 01:34:48"}
+{"level":"error","message":"Trade execution error: invalid input value for enum \"enum_TradeHistories_status\": \"pending\"","service":"deriv-trading-saas","timestamp":"2026-03-06 01:34:48"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 01:39:56"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 01:39:57"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 01:40:02"}
+{"level":"info","message":"Trade 308243052268 logged. Result check in 65s","service":"deriv-trading-saas","timestamp":"2026-03-06 01:40:09"}
+{"level":"info","message":"Sending request to Deriv: authorize","service":"deriv-trading-saas","timestamp":"2026-03-06 01:41:15"}
+{"level":"error","message":"Deriv API Error: Input validation failed: Properties not allowed: contract_id, proposal_open_contract.","service":"deriv-trading-saas","timestamp":"2026-03-06 01:41:15"}
+{"level":"error","message":"Error checking contract 308243052268: Input validation failed: Properties not allowed: contract_id, proposal_open_contract.","service":"deriv-trading-saas","timestamp":"2026-03-06 01:41:15"}
+{"level":"error","message":"Background check failed for trade 308243052268: Input validation failed: Properties not allowed: contract_id, proposal_open_contract.","service":"deriv-trading-saas","timestamp":"2026-03-06 01:41:15"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 01:45:14"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 01:45:16"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 01:45:21"}
+{"error":"Token verification failed: jwt expired","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 01:45:36"}
+{"email":"pro@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 01:46:39"}
+{"level":"info","message":"Trade 308243437508 logged. Result check in 65s","service":"deriv-trading-saas","timestamp":"2026-03-06 01:47:08"}
+{"level":"info","message":"Trade 308243437508 settled: LOST","service":"deriv-trading-saas","timestamp":"2026-03-06 01:48:14"}
+{"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 01:49:33"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 01:56:11"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 01:56:12"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 01:56:17"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 10:05:19"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 10:05:20"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 10:05:26"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 10:09:18"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 10:09:20"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 10:09:26"}
+{"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 10:09:36"}
+{"email":"your-email@example.com","error":"Login failed: Invalid email or password","level":"warn","message":"Login failed","service":"deriv-trading-saas","timestamp":"2026-03-06 10:09:57"}
+{"email":"your-email@example.com","error":"Login failed: Invalid email or password","level":"warn","message":"Login failed","service":"deriv-trading-saas","timestamp":"2026-03-06 10:10:13"}
+{"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 10:11:20"}
+{"error":"Registration failed: Email already registered","level":"error","message":"Registration error","service":"deriv-trading-saas","timestamp":"2026-03-06 10:11:54"}
+{"level":"error","message":"Error Registration failed: Email already registered","method":"POST","service":"deriv-trading-saas","stack":"Error: Registration failed: Email already registered\n    at AuthService.register (/home/tieshamowatt506/deriv-trading-saas/src/services/authService.js:50:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async register (/home/tieshamowatt506/deriv-trading-saas/src/controllers/authController.js:25:22)","timestamp":"2026-03-06 10:11:54","url":"/api/auth/register"}
+{"email":"test@example.com","error":"Login failed: Invalid email or password","level":"warn","message":"Login failed","service":"deriv-trading-saas","timestamp":"2026-03-06 10:12:26"}
+{"email":"tester2@example.com","level":"info","message":"User registered","service":"deriv-trading-saas","timestamp":"2026-03-06 10:12:53","username":"tester2"}
+{"email":"tester2@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 10:13:32"}
+{"email":"tester2@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 10:33:19"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 10:39:08"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 10:39:10"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 10:39:16"}
+{"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 10:40:39"}
+{"email":"tester2@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 10:41:01"}
+{"level":"info","message":"Attempting to connect Deriv account for user: 3368de24-5daa-4f54-bfc7-8c7ead6a17fc","service":"deriv-trading-saas","timestamp":"2026-03-06 10:41:30"}
+{"level":"info","message":"Sending request to Deriv: authorize","service":"deriv-trading-saas","timestamp":"2026-03-06 10:41:31"}
+{"level":"error","message":"Deriv API Error: The token is invalid.","service":"deriv-trading-saas","timestamp":"2026-03-06 10:41:31"}
+{"level":"error","message":"Connection error: The token is invalid.","service":"deriv-trading-saas","timestamp":"2026-03-06 10:41:31"}
+{"level":"error","message":"Error Expected ',' or '}' after property value in JSON at position 19","method":"POST","service":"deriv-trading-saas","stack":"SyntaxError: Expected ',' or '}' after property value in JSON at position 19\n    at JSON.parse (<anonymous>)\n    at parse (/home/tieshamowatt506/deriv-trading-saas/node_modules/body-parser/lib/types/json.js:92:19)\n    at /home/tieshamowatt506/deriv-trading-saas/node_modules/body-parser/lib/read.js:128:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)\n    at invokeCallback (/home/tieshamowatt506/deriv-trading-saas/node_modules/raw-body/index.js:238:16)\n    at done (/home/tieshamowatt506/deriv-trading-saas/node_modules/raw-body/index.js:227:7)\n    at IncomingMessage.onEnd (/home/tieshamowatt506/deriv-trading-saas/node_modules/raw-body/index.js:287:7)\n    at IncomingMessage.emit (node:events:524:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)","timestamp":"2026-03-06 10:43:38","url":"/api/deriv/connect"}
+{"level":"info","message":"Attempting to connect Deriv account for user: 3368de24-5daa-4f54-bfc7-8c7ead6a17fc","service":"deriv-trading-saas","timestamp":"2026-03-06 10:44:14"}
+{"level":"info","message":"Sending request to Deriv: authorize","service":"deriv-trading-saas","timestamp":"2026-03-06 10:44:14"}
+{"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 10:45:50"}
+{"email":"tester2@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 10:46:14"}
+{"level":"info","message":"Trade 308276902588 logged. Result check in 10s","service":"deriv-trading-saas","timestamp":"2026-03-06 10:46:43"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 10:48:31"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 10:48:33"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 10:48:59"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 10:49:02"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 10:49:07"}
+{"level":"error","message":"Error Class constructor AuthMiddleware cannot be invoked without 'new'","method":"GET","service":"deriv-trading-saas","stack":"TypeError: Class constructor AuthMiddleware cannot be invoked without 'new'\n    at Layer.handle [as handle_request] (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:328:13)\n    at /home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:286:9\n    at Function.process_params (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:346:12)\n    at next (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:280:10)\n    at Function.handle (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:175:3)\n    at router (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:47:12)\n    at Layer.handle [as handle_request] (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:328:13)\n    at /home/tieshamowatt506/deriv-trading-saas/node_modules/express/lib/router/index.js:286:9","timestamp":"2026-03-06 10:49:41","url":"/api/deriv/stats"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 10:54:30"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 10:54:32"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 10:54:39"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 10:54:50"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 10:54:52"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 10:54:58"}
+{"level":"info","message":"Trade 308277537548 logged. Result check in 7s","service":"deriv-trading-saas","timestamp":"2026-03-06 10:56:50"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 11:01:43"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 11:01:46"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 11:01:54"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 11:02:08"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 11:02:10"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 11:02:16"}
+{"level":"info","message":"🚀 Server running on port 5000 {\"service\":\"deriv-trading-saas\"}","service":"deriv-trading-saas","timestamp":"2026-03-06 11:02:26"}
+{"level":"info","message":"✅ Connected to Supabase/AWS PostgreSQL","service":"deriv-trading-saas","timestamp":"2026-03-06 11:02:28"}
+{"level":"info","message":"✅ Database models synchronized","service":"deriv-trading-saas","timestamp":"2026-03-06 11:02:34"}
+{"error":"Token verification failed: jwt malformed","level":"warn","message":"Authentication failed","service":"deriv-trading-saas","timestamp":"2026-03-06 11:02:55"}
+{"email":"tester2@example.com","level":"info","message":"User logged in","service":"deriv-trading-saas","timestamp":"2026-03-06 11:03:17"}

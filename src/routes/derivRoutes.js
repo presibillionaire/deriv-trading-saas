@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const derivController = require('../controllers/derivController');
-// Changed { protect } to AuthMiddleware
 const AuthMiddleware = require('../middleware/authMiddleware'); 
 
-// Use AuthMiddleware.authenticate instead of protect
+// Connect Deriv account
 router.post('/connect', AuthMiddleware.authenticate, derivController.connectAccount);
+
+// Get account balance
 router.get('/balance', AuthMiddleware.authenticate, derivController.getBalance);
+
+// --- NEW: Execute a trade ---
+router.post('/trade', AuthMiddleware.authenticate, derivController.placeTrade);
 
 module.exports = router;

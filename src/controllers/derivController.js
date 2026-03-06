@@ -5,15 +5,12 @@ const logger = require('../utils/logger');
 exports.connectAccount = async (req, res, next) => {
   try {
     const { derivToken } = req.body;
-    // Note: req.user.id comes from your protect/auth middleware
     const userId = req.user.id; 
 
     logger.info(`Attempting to connect Deriv account for user: ${userId}`);
 
-    // 1. Actually talk to Deriv to see if this token is real
     const derivData = await derivService.validateToken(derivToken);
 
-    // 2. Update the User in Postgres (Sequelize syntax)
     const user = await User.findByPk(userId);
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' });
@@ -31,7 +28,7 @@ exports.connectAccount = async (req, res, next) => {
       data: {
         fullname: derivData.fullname,
         balance: derivData.balance,
-        currency: derivData.currency
+        currency: derivData.currency 
       }
     });
   } catch (error) {
@@ -57,5 +54,41 @@ exports.getBalance = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+  }
+};
+
+// --- NEW TRADE EXECUTION METHOD ---
+exports.placeTrade = async (req, res, next) => {
+  try {
+    const { symbol, amount, contract_type, duration, duration_unit } = req.body;
+    
+    // Find the user to get their Deriv Token from the database
+    const user = await User.findByPk(req.user.id);
+
+    if (!user || !user.derivApiToken) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Deriv account not linked. Please connect your account first.' 
+      });
+    }
+
+    logger.info(`User ${user.id} placing ${contract_type} trade on ${symbol}`);
+
+    const tradeResult = await derivService.executeTrade(user.derivApiToken, {
+      symbol,
+      amount,
+      contract_type,
+      duration,
+      duration_unit
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Trade executed successfully',
+      data: tradeResult
+    });
+  } catch (error) {
+    logger.error(`Trade execution error: ${error.message}`);
+    res.status(400).json({ success: false, error: error.message });
   }
 };

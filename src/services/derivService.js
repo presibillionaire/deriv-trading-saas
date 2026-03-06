@@ -3,11 +3,11 @@ const logger = require('../utils/logger');
 
 class DerivService {
   constructor() {
-    this.baseUrl = 'wss://ws.binaryws.com/websockets/v3?app_id=1089'; // 1089 is a default test App ID
+    this.baseUrl = 'wss://ws.binaryws.com/websockets/v3?app_id=1089';
   }
 
   /**
-   * Helper to handle the WebSocket lifecycle for a single request
+   * Helper to handle the WebSocket lifecycle for simple requests
    */
   async sendRequest(requestData) {
     return new Promise((resolve, reject) => {
@@ -35,7 +35,6 @@ class DerivService {
         reject(new Error('Failed to connect to Deriv servers'));
       });
 
-      // Timeout after 10 seconds
       setTimeout(() => {
         if (ws.readyState === WebSocket.OPEN) {
           ws.close();
@@ -46,32 +45,76 @@ class DerivService {
   }
 
   async validateToken(token) {
-    try {
-      const response = await this.sendRequest({ authorize: token });
-      logger.info(`Token validated for user: ${response.authorize.fullname}`);
-      return response.authorize; // Returns user details (balance, currency, etc.)
-    } catch (error) {
-      logger.error(`Token validation failed: ${error.message}`);
-      throw error;
-    }
+    const response = await this.sendRequest({ authorize: token });
+    return response.authorize;
   }
 
   async getBalance(token) {
-    try {
-      // We must authorize first to get balance in the same session
-      // For simplicity in this helper, we use the authorize call which returns balance anyway
-      const response = await this.sendRequest({ authorize: token });
-      return {
-        balance: response.authorize.balance,
-        currency: response.authorize.currency
-      };
-    } catch (error) {
-      logger.error(`Failed to fetch balance: ${error.message}`);
-      throw error;
-    }
+    const response = await this.sendRequest({ authorize: token });
+    return {
+      balance: response.authorize.balance,
+      currency: response.authorize.currency
+    };
   }
 
-  // We will implement executeTrade once we verify the connection works!
+  /**
+   * Executes a trade (Authorize -> Buy flow)
+   */
+  async executeTrade(token, tradeParams) {
+    return new Promise((resolve, reject) => {
+      const ws = new WebSocket(this.baseUrl);
+
+      ws.on('open', () => {
+        ws.send(JSON.stringify({ authorize: token }));
+      });
+
+      ws.on('message', (data) => {
+        const response = JSON.parse(data);
+
+        if (response.error) {
+          ws.close();
+          return reject(new Error(response.error.message));
+        }
+
+        if (response.msg_type === 'authorize') {
+          ws.send(JSON.stringify({
+            buy: 1,
+            price: tradeParams.amount,
+            parameters: {
+              amount: tradeParams.amount,
+              basis: 'stake',
+              contract_type: tradeParams.contract_type,
+              currency: response.authorize.currency || 'USD',
+              duration: tradeParams.duration,
+              duration_unit: tradeParams.duration_unit,
+              symbol: tradeParams.symbol
+            }
+          }));
+        }
+
+        if (response.msg_type === 'buy') {
+          ws.close();
+          resolve({
+            contract_id: response.buy.contract_id,
+            purchase_price: response.buy.buy_price,
+            balance_after: response.buy.balance_after
+          });
+        }
+      });
+
+      ws.on('error', (error) => {
+        ws.close();
+        reject(error);
+      });
+
+      setTimeout(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.close();
+          reject(new Error('Trade timed out'));
+        }
+      }, 20000);
+    });
+  }
 }
 
 module.exports = new DerivService();
